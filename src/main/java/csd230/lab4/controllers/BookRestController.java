@@ -26,4 +26,9 @@ public class BookRestController {
         Book x = bookRepository.findById(id);
         return x;
     }
+
+    @PostMapping()
+    Book newBook(@RequestBody Book newBook) {
+        return bookRepository.save(newBook);
+    }
 }
