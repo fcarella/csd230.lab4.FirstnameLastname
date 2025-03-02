@@ -32,4 +32,28 @@ public class BookRestController {
     Book newBook(@RequestBody Book newBook) {
         return bookRepository.save(newBook);
     }
+
+    @PutMapping("/{id}")
+    Book replaceBook(@RequestBody Book newBook, @PathVariable Long id) {
+
+        return bookRepository.findById(id)
+                .map(book -> {
+                    book.setAuthor(newBook.getAuthor());
+                    book.setIsbn(newBook.getIsbn());
+                    book.setCopies(newBook.getCopies());
+                    book.setDescription(newBook.getDescription());
+                    book.setPrice(newBook.getPrice());
+                    book.setTitle(newBook.getTitle());
+                    book.setQuantity(newBook.getQuantity());
+
+                    return bookRepository.save(book);
+                })
+                .orElseGet(() -> {
+                    return bookRepository.save(newBook);
+                });
+    }
+    @DeleteMapping("/{id}")
+    void deleteBook(@PathVariable Long id) {
+        bookRepository.deleteById(id);
+    }
 }
