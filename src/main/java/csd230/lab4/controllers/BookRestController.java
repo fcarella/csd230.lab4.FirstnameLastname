@@ -17,14 +17,15 @@ public class BookRestController {
 
     @GetMapping()
     List<Book> all() {
-        return bookRepository.findAll();
+        List<Book> all = bookRepository.findAll();
+        return all;
     }
 
     @GetMapping
     @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = "application/json")
     public Book getBook(@PathVariable int id) {
-        Book x = bookRepository.findById(id);
-        return x;
+        Book book = bookRepository.findById(id);
+        return book;
     }
 
     @PostMapping()

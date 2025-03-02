@@ -40,7 +40,7 @@ public class Application {
 			com.github.javafaker.Code code=faker.code();
 
 			// save a few customers
-			for(int i=0;i<5;i++) {
+			for(int i=0;i<2;i++) {
 				String title=fakeBook.title();
 				double price=number.randomDouble(2, 10, 100);
 				int copies=number.numberBetween(5, 20);
