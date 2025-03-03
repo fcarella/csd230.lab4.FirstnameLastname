@@ -15,6 +15,7 @@ public class BookRestController {
         this.bookRepository = bookRepository;
     }
 
+//    @CrossOrigin
     @GetMapping()
     List<Book> all() {
         List<Book> all = bookRepository.findAll();
