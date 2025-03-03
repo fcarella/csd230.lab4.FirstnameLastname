@@ -36,7 +36,7 @@ public class Cart {
         this.id = id;
     }
     public void addItem(CartItem item) {
-        item.setCart(this);
+//        item.setCart(this);
         items.add(item);
     }
 
