@@ -1,28 +1,35 @@
-import { useState, useEffect } from 'react';
-
+import React, {useEffect, useState} from 'react';
 import './App.css'
+
 function Book() {
-    const [data, setData] = useState(null);
+    /* RandomUserData.js */
+    const [userData, setUserData] = useState(null);
 
     useEffect(() => {
-        console.log('here');
+        // fetch('https://random-data-api.com/api/users/random_user')
         fetch('http://localhost:8080/rest/book')
-            .then((response) => response.json()
-                .then((data) => {
-                    console.log(data);
-                    setData(data);
-                }));
-
+            .then(response => response.json())
+            .then(data => setUserData(data));
     }, []);
 
-
     return (
-        <ul>
-            {data.map(item => (
-                <li key={item.id}>{item.title} by  {item.author}, a story about  {item.description}</li>
-            ))}
-        </ul>
-
+        <div>
+            {userData && (
+                <div>
+                    <h2>User Information</h2>
+                    <p>
+                        {userData.id}
+                        Name:
+                        {userData.author}
+                        {userData.title}
+                    </p>
+                    <p>
+                        Email: {userData.description}
+                    </p>
+                    {/* Add more user data fields as needed */}
+                </div>
+            )}
+        </div>
     );
 }
 
